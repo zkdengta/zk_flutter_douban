@@ -48,6 +48,11 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+  # api request
+  dio: ^4.0.4
+  pretty_dio_logger: ^1.1.1
+  # loading
+  flutter_easyloading: ^3.0.3
 
 # The following section is specific to Flutter.
 flutter:
