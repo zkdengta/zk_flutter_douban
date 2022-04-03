@@ -46,13 +46,23 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+  # For information on the generic Dart part of this file, see the
+  # following page: https://dart.dev/tools/pub/pubspec
   # api request
   dio: ^4.0.4
   pretty_dio_logger: ^1.1.1
   # loading
   flutter_easyloading: ^3.0.3
+  # GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理  State Manager、Navigation Manager
+  get: ^4.5.1
+  # 网络检测
+  connectivity_plus: ^2.1.0
+  # 骨架屏
+  shimmer: ^2.0.0
+  # Lottie动画
+  lottie: ^1.2.1
+  # 刷新加载框架
+  pull_to_refresh: ^2.0.0
 
 # The following section is specific to Flutter.
 flutter:
@@ -92,3 +102,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - images/
