@@ -65,6 +65,8 @@ dev_dependencies:
   pull_to_refresh: ^2.0.0
   # 屏幕适配
   flutter_screenutil: ^5.0.1
+  # fluttertoast插件依赖原生
+  fluttertoast: ^8.0.8
 
 # The following section is specific to Flutter.
 flutter:

@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 class StringsConstant {
   static const String jumpSplash = "跳过"; //首页
   static const String homePage = "首页"; //首页
-  static const String accountTreePage = "体系"; //体系
-  static const String navigationPage = "导航"; //导航
-  static const String projectPage = "项目"; //项目
+  static const String coursePage = "课堂"; //课堂
+  static const String mallPage = "商城"; //商城
+  static const String collectPage = "收藏夹"; //收藏夹
   static const String minePage = "我的"; //我的
   static const String changeTheme = "更改主题"; //更改主题
   static const String setting = "设置"; //设置
@@ -75,9 +75,9 @@ class Messages extends Translations {
         'zh_CN': {
           StringsConstant.jumpSplash: '跳过',
           StringsConstant.homePage: '首页',
-          StringsConstant.accountTreePage: '体系',
-          StringsConstant.navigationPage: '导航',
-          StringsConstant.projectPage: '项目',
+          StringsConstant.coursePage:"课堂", //课堂
+          StringsConstant.mallPage:"商城", //商城
+          StringsConstant.collectPage: "收藏夹", //收藏夹
           StringsConstant.minePage: '我的',
           StringsConstant.changeTheme: '更改主题',
           StringsConstant.setting: '设置',
@@ -141,9 +141,9 @@ class Messages extends Translations {
         'zh_HK': {
           StringsConstant.jumpSplash: '跳过',
           StringsConstant.homePage: '首頁',
-          StringsConstant.accountTreePage: '體系',
-          StringsConstant.navigationPage: '導航',
-          StringsConstant.projectPage: '項目',
+          StringsConstant.coursePage:"课堂", //课堂
+          StringsConstant.mallPage:"商城", //商城
+          StringsConstant.collectPage: "收藏夹", //收藏夹
           StringsConstant.minePage: '我的',
           StringsConstant.changeTheme: '更改主題',
           StringsConstant.setting: '設置',
@@ -207,9 +207,9 @@ class Messages extends Translations {
         'en_US': {
           StringsConstant.jumpSplash: 'Skip',
           StringsConstant.homePage: 'Home',
-          StringsConstant.accountTreePage: 'System',
-          StringsConstant.navigationPage: 'Navigation',
-          StringsConstant.projectPage: 'Project',
+          StringsConstant.coursePage:"Course", //课堂
+          StringsConstant.mallPage:"Mall", //商城
+          StringsConstant.collectPage: "Collect", //收藏夹
           StringsConstant.minePage: 'Mine',
           StringsConstant.changeTheme: 'Change Theme',
           StringsConstant.setting: 'Setting',
