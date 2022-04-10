@@ -37,6 +37,8 @@ class MainPage extends GetView<MainController> {
         items: controller.bottomTabs,
         currentIndex: controller.currentPage,
         type: BottomNavigationBarType.fixed,
+        fixedColor: Colors.black,
+        unselectedItemColor: Colors.black45,
         selectedFontSize: 12,
         unselectedFontSize: 12,
         onTap: (int index) => controller.switchBottomBar(index),

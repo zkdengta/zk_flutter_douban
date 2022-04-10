@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:zk_flutter_douban/pages/home/home_binding.dart';
+import 'package:zk_flutter_douban/pages/home/home_page.dart';
 import 'package:zk_flutter_douban/pages/main/main_binding.dart';
 import 'package:zk_flutter_douban/pages/main/main_page.dart';
 import 'package:zk_flutter_douban/pages/splash/splash_binding.dart';
@@ -21,8 +23,13 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.main,
-      page: () => MainPage(),
+      page: () => const MainPage(),
       binding: MainBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.home,
+      page: () => const HomePage(),
+      binding: HomeBinding(),
     )
   ];
 }

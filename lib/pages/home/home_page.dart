@@ -1,15 +1,24 @@
 
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:zk_flutter_douban/pages/home/home_controller.dart';
+import 'package:zk_flutter_douban/pages/home/nav_home_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      " 我是主页",
-      style: TextStyle(fontSize: 36,color: Colors.red),
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const NavHomePage(),
+        backgroundColor: Colors.white,
+        bottom: TabBar(
+          tabs: controller.tabs,
+          controller: controller.tabController,
+        ),
+      ),
     );
   }
 }

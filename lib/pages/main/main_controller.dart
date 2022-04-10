@@ -34,12 +34,12 @@ class MainController extends GetxController {
   BottomNavigationBarItem _bottomNavigationBarItem(String key, String value) {
     return BottomNavigationBarItem(
       icon: Image.asset(
-        'images/tabbar/$key.png',
+        'images/$key.png',
         width: 22,
         height: 22,
       ),
       activeIcon: Image.asset(
-        'images/tabbar/${key}_active.png',
+        'images/${key}_active.png',
         width: 22,
         height: 22,
       ),
