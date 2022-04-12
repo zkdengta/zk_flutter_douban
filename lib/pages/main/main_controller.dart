@@ -75,16 +75,16 @@ class MainController extends GetxController {
         child: HomePage(),
       ),
       const KeepAliveWrapper(
-        child: HomePage(),
+        child: Text("gjahgdaghkj1"),
       ),
       const KeepAliveWrapper(
-        child: HomePage(),
+        child: Text("gjahgdaghkj2"),
       ),
       const KeepAliveWrapper(
-        child: HomePage(),
+        child: Text("gjahgdaghkj3"),
       ),
       const KeepAliveWrapper(
-        child: HomePage(),
+        child: Text("gjahgdaghkj4"),
       ),
     ];
 
