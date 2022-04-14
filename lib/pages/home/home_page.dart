@@ -33,11 +33,9 @@ class HomePage extends GetView<HomeController> {
           ),
         ),
       ),
-      body: Container(
-        child: TabBarView(
-          children: controller.tabContent,
-          controller: controller.tabController,
-        ),
+      body: TabBarView(
+        children: controller.tabContent,
+        controller: controller.tabController,
       ),
     );
   }
