@@ -13,7 +13,7 @@ class HttpRequest{
   // 工厂构造方法
   factory HttpRequest() => _instance;
   // 初始化一个单例实例
-  static final HttpRequest _instance = HttpRequest._instance;
+  static final HttpRequest _instance = HttpRequest._internal();
   // dio 实例
   Dio? dio;
   // 内部构造方法

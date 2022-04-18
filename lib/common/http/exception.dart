@@ -21,7 +21,6 @@ class ApiException implements Exception {
         return BadRequestException(-1, "响应超时");
       case DioErrorType.response:
         try {
-
           /// http错误码带业务错误信息
           BaseModel apiResponse = BaseModel.fromJson(error.response?.data);
           if(apiResponse.code != null){

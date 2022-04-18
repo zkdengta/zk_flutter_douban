@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zk_flutter_douban/base/refresh_paging_state_page.dart';
-import 'package:zk_flutter_douban/pages/home/recommend/home_recomend_controller.dart';
+import 'package:zk_flutter_douban/pages/home/recommend/home_banner_widget.dart';
+import 'package:zk_flutter_douban/pages/home/recommend/home_recommend_controller.dart';
 
 class HomeRecommendPage extends StatelessWidget {
 
@@ -22,7 +23,7 @@ class HomeRecommendPage extends StatelessWidget {
       child: CustomScrollView(
         controller: controller.scrollController,
         slivers: [
-
+          HomeBannerWidget()
         ],
       ),
     );

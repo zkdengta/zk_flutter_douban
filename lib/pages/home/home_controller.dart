@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zk_flutter_douban/pages/home/recommend/home_recommend_page.dart';
 import 'package:zk_flutter_douban/widget/keep_alive_wrapper.dart';
 
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin{
@@ -23,7 +24,7 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
     super.onInit();
     tabContent = <Widget>[
       const KeepAliveWrapper(
-        child: Text("gjahgdaghkj0"),
+        child: HomeRecommendPage(),
       ),
       const KeepAliveWrapper(
         child: Text("gjahgdaghkj1"),
