@@ -4,6 +4,7 @@ import 'package:zk_flutter_douban/common/constant.dart';
 import 'package:zk_flutter_douban/common/http/apis.dart';
 import 'package:zk_flutter_douban/common/http/http_request.dart';
 import 'package:zk_flutter_douban/modes/banner_model.dart';
+import 'package:zk_flutter_douban/modes/test_entity.dart';
 import 'package:zk_flutter_douban/utils/logger_util.dart';
 import 'package:zk_flutter_douban/widget/state/load_state.dart';
 
@@ -18,32 +19,52 @@ class HomeRecommendController extends BaseGetXWithPageRefreshController {
 
   /// 首页推荐
   Future<void> getHomeRecommendData({int page = 1, int pageSize = 10}) async {
-    HttpManager(
+    // httpManager(
+    //     loadingType: Constant.noLoading,
+    //     future: HttpRequest().post(
+    //         APIS.homeRecommended
+    //             .replaceFirst(RegExp('page'), '${page * pageSize}'),
+    //         queryParameters: {
+    //           '_session': '1628128796-4926D5D3-18DB-48D7-B85A-D065350C3BA5',
+    //           'auto_play_mode': '2',
+    //           'code': '79c0d8972caf4383',
+    //           'device_id': '4926D5D3-18DB-48D7-B85A-D065350C3BA5',
+    //           'direction': page,
+    //           'elapsed_milliseconds': '9223372036854775807',
+    //           'bottom_id': '0',
+    //           'request_count': '10',
+    //           'user_id': '0'
+    //         }),
+    //     onSuccess: (response) {
+    //       refreshLoadState = LoadState.success;
+    //       /// 轮播图数据
+    //       // BannerModelList bannerModelList =
+    //       //     BannerModelList.fromJson(response['banner']);
+    //       // homeBannerList.assignAll(bannerModelList.list);
+    //     },
+    //     onFail: (error) {
+    //       LoggerUtil.e("HomeRecommendController"+error.message!);
+    //       refreshLoadState = LoadState.fail;
+    //     });
+
+    httpManager<TestEntity>(
         loadingType: Constant.noLoading,
-        future: HttpRequest().post(
-            APIS.homeRecommended
-                .replaceFirst(RegExp('page'), '${page * pageSize}'),
+        future: HttpRequest().post<TestEntity>(
+            APIS.test,
             queryParameters: {
-              '_session': '1628128796-4926D5D3-18DB-48D7-B85A-D065350C3BA5',
-              'auto_play_mode': '2',
-              'code': '79c0d8972caf4383',
-              'device_id': '4926D5D3-18DB-48D7-B85A-D065350C3BA5',
-              'direction': page,
-              'elapsed_milliseconds': '9223372036854775807',
-              'bottom_id': '0',
-              'request_count': '10',
-              'user_id': '0'
+              'pageIndex': page,
             }),
         onSuccess: (response) {
-          loadState = LoadState.success;
+          refreshLoadState = LoadState.success;
+          LoggerUtil.i("HomeRecommendController"+(response.total).toString());
           /// 轮播图数据
-          BannerModelList bannerModelList =
-              BannerModelList.fromJson(response['result']['banner']);
-          homeBannerList.assignAll(bannerModelList.list);
+          // BannerModelList bannerModelList =
+          //     BannerModelList.fromJson(response['banner']);
+          // homeBannerList.assignAll(bannerModelList.list);
         },
         onFail: (error) {
-          LoggerUtil.e("sss"+"iiii"+error.message!);
-          loadState = LoadState.fail;
+          LoggerUtil.e("HomeRecommendController"+error.message!);
+          refreshLoadState = LoadState.fail;
         });
   }
 }

@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zk_flutter_douban/res/gaps.dart';
-import 'package:zk_flutter_douban/res/strings.dart';
+
 import 'splash_controller.dart';
-import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {
   final controller = Get.find<SplashController>();
@@ -49,7 +49,7 @@ class SplashPage extends StatelessWidget {
                   Gaps.hGap10,
                   InkWell(
                     child: _cilpButton(controller),
-                    onTap: controller.jumpToMain(),
+                    onTap:(){ controller.jumpToMain();},
                   )
                 ],
               ))

@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:zk_flutter_douban/common/http/http_config.dart';
 import 'package:zk_flutter_douban/common/http/response/base_model.dart';
-import 'package:zk_flutter_douban/common/http/response/raw_data.dart';
 
 import 'exception.dart';
 
@@ -33,7 +32,7 @@ class HttpRequest{
     }
   }
 
-  Future<T?> request<T>(
+  Future<BaseModel<T>> request<T>(
       String url, {
         String method = "Get",
         Map<String, dynamic>? queryParameters,
@@ -58,8 +57,7 @@ class HttpRequest{
         throw exception;
       }
     }
-
-    return null;
+    return BaseModel(-1,"数据解析失败",null);
   }
 
   _convertRequestData(data) {
@@ -69,7 +67,7 @@ class HttpRequest{
     return data;
   }
 
-  Future<T?> get<T>(
+  Future<BaseModel<T>> get<T>(
       String url, {
         Map<String, dynamic>? queryParameters,
         Map<String, dynamic>? headers,
@@ -82,7 +80,7 @@ class HttpRequest{
         onError: onError);
   }
 
-  Future<T?> post<T>(
+  Future<BaseModel<T>> post<T>(
       String url, {
         Map<String, dynamic>? queryParameters,
         data,
@@ -98,7 +96,7 @@ class HttpRequest{
         onError: onError);
   }
 
-  Future<T?> delete<T>(
+  Future<BaseModel<T>> delete<T>(
       String url, {
         Map<String, dynamic>? queryParameters,
         data,
@@ -114,7 +112,7 @@ class HttpRequest{
         onError: onError);
   }
 
-  Future<T?> put<T>(
+  Future<BaseModel<T>> put<T>(
       String url, {
         Map<String, dynamic>? queryParameters,
         data,
@@ -131,21 +129,30 @@ class HttpRequest{
   }
 
   ///请求响应内容处理
-  T? _handleResponse<T>(Response response) {
+  BaseModel<T> _handleResponse<T>(Response response) {
     if (response.statusCode == 200) {
-      if(T.toString() == (RawData).toString()){
-        RawData raw = RawData();
-        raw.value = response.data;
-        return raw as T;
-      }else {
         BaseModel<T> apiResponse = BaseModel<T>.fromJson(response.data);
-        return _handleBusinessResponse<T>(apiResponse);
-      }
+        return apiResponse;
     } else {
       var exception = ApiException(response.statusCode, ApiException.unknownException);
       throw exception;
     }
   }
+  // T? _handleResponse<T>(Response response) {
+  //   if (response.statusCode == 200) {
+  //     if(T.toString() == (RawData).toString()){
+  //       RawData raw = RawData();
+  //       raw.value = response.data;
+  //       return raw as T;
+  //     }else {
+  //       BaseModel<T> apiResponse = BaseModel<T>.fromJson(response.data);
+  //       return _handleBusinessResponse<T>(apiResponse);
+  //     }
+  //   } else {
+  //     var exception = ApiException(response.statusCode, ApiException.unknownException);
+  //     throw exception;
+  //   }
+  // }
 
   ///业务内容处理
   T? _handleBusinessResponse<T>(BaseModel<T> response) {

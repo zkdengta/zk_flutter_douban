@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       hideFooterWhenNotFull: false,
       child: ScreenUtilInit(
         designSize: const Size(360,690),
-        builder: () => GetMaterialApp(
+        builder: (BuildContext context, Widget? child) => GetMaterialApp(
           debugShowCheckedModeBanner: false,
           builder: (context,child){
             return FlutterEasyLoading(

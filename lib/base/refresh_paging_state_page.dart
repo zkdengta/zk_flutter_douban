@@ -196,7 +196,7 @@ class RefreshPagingStatePage<T extends BaseGetXWithPageRefreshController>
         );
       }
 
-      final Color _backgroundColor = context.appBarBackgroundColor!;
+      final Color _backgroundColor = context.dialogBackgroundColor;
 
       final SystemUiOverlayStyle _overlayStyle =
           ThemeData.estimateBrightnessForColor(_backgroundColor) ==
