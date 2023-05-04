@@ -8,6 +8,8 @@ import 'package:zk_flutter_douban/common/http/exception.dart';
 import 'package:zk_flutter_douban/common/http/response/base_model.dart';
 import 'package:zk_flutter_douban/widget/state/load_state.dart';
 
+import '../common/http/http_config.dart';
+
 /// 基于GetX的可刷新及分页的 BaseGetXWithPageRefreshController
 class BaseGetXWithPageRefreshController extends BaseGetXController {
 
@@ -56,12 +58,11 @@ class BaseGetXWithPageRefreshController extends BaseGetXController {
     _refreshController.dispose();
   }
 
-  void httpManagerWithRefreshPaging({
+  void httpManagerWithRefreshPaging<T>({
     required String loadingType,
     RefreshState refreshState = RefreshState.refresh,
-    required Future<dynamic> future,
-    Function()? onStart,
-    required Function(dynamic value) onSuccess,
+    required Future<BaseModel<T>> future,
+    required Function(T value) onSuccess,
     required Function(ApiException value) onFail
   }) async {
     // 重置无数据状态刷新器
@@ -78,11 +79,6 @@ class BaseGetXWithPageRefreshController extends BaseGetXController {
       refreshLoadState = LoadState.lottieRocketLoading;
     } else if (loadingType == Constant.noLoading) {
       refreshLoadState = LoadState.success;
-      // return;
-    }
-
-    if (onStart != null) {
-      onStart();
     }
 
     future.then((value) {
@@ -90,10 +86,11 @@ class BaseGetXWithPageRefreshController extends BaseGetXController {
       BaseModel response = value;
       //拿到res.data就可以进行Json解析了，这里一般用来构造实体类
       var success = response.code;
-      if (success == 1) {
+      if (success == HttpConfig.successCode) {
         dismissEasyLoading();
         /// 请求成功
-        var data = response.data;
+        // var data = response.data;
+        var data = response.result;
         if (data != null) {
           refreshLoadingSuccess(refreshState);
           refreshLoadState = LoadState.success;
@@ -121,7 +118,8 @@ class BaseGetXWithPageRefreshController extends BaseGetXController {
           refreshLoadState = LoadState.success;
         }
         dismissEasyLoading();
-        onFail(ApiException(response.code, response.message));
+        // onFail(ApiException(response.code, response.message));
+        onFail(ApiException(response.code, response.state));
       }
     }).onError<ApiException>((error, stackTrace) {
       /// 网络请求失败 第一次加载，请求失败，则显示错误页面

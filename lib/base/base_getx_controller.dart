@@ -68,7 +68,8 @@ class BaseGetXController extends GetxController {
       /// 网络请求成功
       if (code == HttpConfig.successCode) {
         /// 请求成功
-        var data = model.data;
+        // var data = model.data;
+        var data = model.result;
         loadState = LoadState.success;
         /// 在onSuccess()中也要判断具体的业务数据是否为空
         onSuccess(data);
@@ -76,7 +77,8 @@ class BaseGetXController extends GetxController {
         /// 请求失败
         loadState = LoadState.fail;
         // 外部方法在后，可在方法里根据业务更改状态
-        onFail(ApiException(model.code, model.message));
+        // onFail(ApiException(model.code, model.message));
+        onFail(ApiException(model.code, model.state));
       }
     }).onError<ApiException>((error, stackTrace) {
       /// 网络请求失败

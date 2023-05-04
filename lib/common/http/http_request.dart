@@ -40,7 +40,7 @@ class HttpRequest{
         Map<String, dynamic>? headers,
         bool Function(ApiException)? onError,
       }) async {
-    try {
+    // try {
       Options options = Options()
         ..method = method
         ..headers = headers;
@@ -51,12 +51,13 @@ class HttpRequest{
           queryParameters: queryParameters, data: data, options: options);
 
       return _handleResponse<T>(response);
-    } catch (e) {
-      var exception = ApiException.from(e);
-      if(onError?.call(exception) != true){
-        throw exception;
-      }
-    }
+    // } catch (e) {
+    //   LoggerUtil.i("request<T>--"+e.toString());
+    //   var exception = ApiException.from(e);
+    //   if(onError?.call(exception) != true){
+    //     throw exception;
+    //   }
+    // }
     return BaseModel(-1,"数据解析失败",null);
   }
 
@@ -131,7 +132,7 @@ class HttpRequest{
   ///请求响应内容处理
   BaseModel<T> _handleResponse<T>(Response response) {
     if (response.statusCode == 200) {
-        BaseModel<T> apiResponse = BaseModel<T>.fromJson(response.data);
+        BaseModel<T> apiResponse = BaseModel<T>.fromJson(jsonDecode(response.data));
         return apiResponse;
     } else {
       var exception = ApiException(response.statusCode, ApiException.unknownException);
@@ -155,13 +156,13 @@ class HttpRequest{
   // }
 
   ///业务内容处理
-  T? _handleBusinessResponse<T>(BaseModel<T> response) {
-    if (response.code == HttpConfig.successCode) {
-      return response.data;
-    } else {
-      var exception = ApiException(response.code, response.message);
-      throw exception;
-    }
-  }
+  // T? _handleBusinessResponse<T>(BaseModel<T> response) {
+  //   if (response.code == HttpConfig.successCode) {
+  //     return response.data;
+  //   } else {
+  //     var exception = ApiException(response.code, response.message);
+  //     throw exception;
+  //   }
+  // }
 
 }

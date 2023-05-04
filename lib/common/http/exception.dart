@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:zk_flutter_douban/common/http/response/base_model.dart';
 
+import '../../utils/logger_util.dart';
+
 class ApiException implements Exception {
   static const unknownException = "未知错误";
+  static const dataAnalysisException = "数据解析出错";
   final String? message;
   final int? code;
   String? stackInfo;
@@ -24,7 +27,8 @@ class ApiException implements Exception {
           /// http错误码带业务错误信息
           BaseModel apiResponse = BaseModel.fromJson(error.response?.data);
           if(apiResponse.code != null){
-            return ApiException(apiResponse.code, apiResponse.message);
+            // return ApiException(apiResponse.code, apiResponse.message);
+            return ApiException(apiResponse.code, apiResponse.state);
           }
 
           int? errCode = error.response?.statusCode;
@@ -62,10 +66,11 @@ class ApiException implements Exception {
   factory ApiException.from(dynamic exception){
     if(exception is DioError){
       return ApiException.fromDioError(exception);
-    } if(exception is ApiException){
+    }else if(exception is ApiException){
       return exception;
     } else {
-      var apiException = ApiException(-1, unknownException);
+      LoggerUtil.i("ApiException--"+exception.toString());
+      var apiException = ApiException(-1, dataAnalysisException);
       apiException.stackInfo = exception?.toString();
       return apiException;
     }
