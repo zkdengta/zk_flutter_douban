@@ -84,7 +84,7 @@ class BaseGetXController extends GetxController {
       /// 网络请求失败
       if (loadingType != Constant.noLoading) {
         loadState = LoadState.fail;
-        errorMsg = '${error.code}  ${error.message}';
+        errorMsg = '${error.message}';
       }
       onFail(error);
     });

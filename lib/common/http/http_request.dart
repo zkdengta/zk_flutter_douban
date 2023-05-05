@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:zk_flutter_douban/common/http/http_config.dart';
 import 'package:zk_flutter_douban/common/http/response/base_model.dart';
+import 'package:zk_flutter_douban/utils/logger_util.dart';
 
 import 'exception.dart';
 
@@ -40,7 +41,7 @@ class HttpRequest{
         Map<String, dynamic>? headers,
         bool Function(ApiException)? onError,
       }) async {
-    // try {
+    try {
       Options options = Options()
         ..method = method
         ..headers = headers;
@@ -49,15 +50,13 @@ class HttpRequest{
 
       Response response = await dio!.request(url,
           queryParameters: queryParameters, data: data, options: options);
-
       return _handleResponse<T>(response);
-    // } catch (e) {
-    //   LoggerUtil.i("request<T>--"+e.toString());
-    //   var exception = ApiException.from(e);
-    //   if(onError?.call(exception) != true){
-    //     throw exception;
-    //   }
-    // }
+    } catch (e) {
+      var exception = ApiException.from(e);
+      if(onError?.call(exception) != true){
+        throw exception;
+      }
+    }
     return BaseModel(-1,"数据解析失败",null);
   }
 
@@ -132,7 +131,15 @@ class HttpRequest{
   ///请求响应内容处理
   BaseModel<T> _handleResponse<T>(Response response) {
     if (response.statusCode == 200) {
-        BaseModel<T> apiResponse = BaseModel<T>.fromJson(jsonDecode(response.data));
+        LoggerUtil.e("getHomeRecommendData---"+response.data.runtimeType.toString());
+        BaseModel<T> apiResponse;
+        switch(response.data.runtimeType){
+          case String:
+            apiResponse = BaseModel<T>.fromJson(jsonDecode(response.data));
+            break;
+          default:
+            apiResponse = BaseModel<T>.fromJson(response.data);
+        }
         return apiResponse;
     } else {
       var exception = ApiException(response.statusCode, ApiException.unknownException);

@@ -127,7 +127,7 @@ class BaseGetXWithPageRefreshController extends BaseGetXController {
         // 加载状态设置为fail
         refreshLoadState = LoadState.fail;
         // LoadErrorMsg 文字内容
-        errorMsg = '${error.code}  ${error.message}';
+        errorMsg = '${error.message}';
       } else {
         /// 网络请求失败 非第一次加载，请求失败，则不显示错误页面
         refreshLoadingFailed(refreshState);

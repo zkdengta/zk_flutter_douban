@@ -6,5 +6,5 @@ class APIS{
 
 
   static const homeRecommended = "/home/recommended/page/10";
-  static const test = "/test/api/article/list";
+  static const homeNotes = "/home/notes/page/10";
 }

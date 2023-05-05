@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zk_flutter_douban/pages/home/home_notes/home_notes_page.dart';
 import 'package:zk_flutter_douban/pages/home/recommend/home_recommend_page.dart';
 import 'package:zk_flutter_douban/widget/keep_alive_wrapper.dart';
 
@@ -27,7 +28,7 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
         child: HomeRecommendPage(),
       ),
       const KeepAliveWrapper(
-        child: Text("gjahgdaghkj1"),
+        child: HomeNotesPage(),
       ),
       const KeepAliveWrapper(
         child: Text("gjahgdaghkj2"),

@@ -163,7 +163,7 @@ class HomeCookWidget extends StatelessWidget {
       ),
       child: ClipOval(
         child: FadeInImage.assetNetwork(
-          placeholder: 'assets/images/common/lazy-1.png',
+          placeholder: 'images/lazy-1.png',
           image: imageStr,
           fit: BoxFit.cover,
         ),
