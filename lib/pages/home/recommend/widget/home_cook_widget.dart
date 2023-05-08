@@ -5,7 +5,7 @@ import 'package:zk_flutter_douban/res/app_colors.dart';
 import 'package:zk_flutter_douban/res/dimens.dart';
 import 'package:zk_flutter_douban/res/gaps.dart';
 
-import '../../../../tool_views/cached_network_Image.dart';
+import '../../../../widget/cached_network_Image.dart';
 
 class HomeCookWidget extends StatelessWidget {
   const HomeCookWidget({Key? key, required this.item}) : super(key: key);

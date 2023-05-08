@@ -4,9 +4,8 @@ import 'package:lottie/lottie.dart';
 import 'package:zk_flutter_douban/res/gaps.dart';
 import 'package:zk_flutter_douban/res/r.dart';
 import 'package:zk_flutter_douban/res/strings.dart';
-import 'package:zk_flutter_douban/theme/app_color.dart';
-import 'package:zk_flutter_douban/theme/app_theme.dart';
 
+import '../../res/app_colors.dart';
 import 'load_state.dart';
 
 /// 描述: 加载错误页面
@@ -55,9 +54,10 @@ class EmptyErrorStatePage extends StatelessWidget {
                   visible: showErrMsg??false,
                   child: Text(
                     '$errMsg，${StringsConstant.clickRetry.tr}',
-                    style: context.bodyText2Style!.copyWith(
-                      color: AppColors.colorB8C0D4,
-                    ),
+                      style: const TextStyle(
+                          color: AppColors.yellow,
+                          fontSize: 16
+                      ),
                   ),
                 ),
               ],

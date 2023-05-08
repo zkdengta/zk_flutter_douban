@@ -48,7 +48,7 @@ class TopicWidget extends GetView<HomeNotesController> {
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
                 margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 6),
                 decoration: BoxDecoration(
-                    color: const Color.fromARGB(240, 251, 252, 1),
+                    color: const Color.fromRGBO(240, 251, 252, 1),
                     borderRadius: const BorderRadius.all(Radius.circular(40)),
                     border: Border.all(
                         width: 1,
@@ -58,7 +58,7 @@ class TopicWidget extends GetView<HomeNotesController> {
                     )
                 ),
                 child: Text(
-                  '# ' + tag.name!,
+                  '# ${tag.name!}',
                   style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 13,

@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:zk_flutter_douban/common/http/http_config.dart';
 import 'package:zk_flutter_douban/common/http/response/base_model.dart';
-import 'package:zk_flutter_douban/utils/logger_util.dart';
 
 import 'exception.dart';
 
@@ -21,8 +20,8 @@ class HttpRequest{
     if(dio == null){
       BaseOptions baseOptions = BaseOptions(
         baseUrl: HttpConfig.baseUrl,
-        connectTimeout: HttpConfig.connectTimeout,
-        receiveTimeout: HttpConfig.receiveTimeout,
+        connectTimeout: const Duration(milliseconds: HttpConfig.connectTimeout),
+        receiveTimeout: const Duration(milliseconds: HttpConfig.receiveTimeout),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -131,7 +130,7 @@ class HttpRequest{
   ///请求响应内容处理
   BaseModel<T> _handleResponse<T>(Response response) {
     if (response.statusCode == 200) {
-        LoggerUtil.e("getHomeRecommendData---"+response.data.runtimeType.toString());
+        // LoggerUtil.e("getHomeRecommendData---"+response.data.runtimeType.toString());
         BaseModel<T> apiResponse;
         switch(response.data.runtimeType){
           case String:

@@ -37,6 +37,10 @@ HomeNotesList $HomeNotesListFromJson(Map<String, dynamic> json) {
 	if (type != null) {
 		homeNotesList.type = type;
 	}
+	final HomeNotesListActivity? activity = jsonConvert.convert<HomeNotesListActivity>(json['activity']);
+	if (activity != null) {
+		homeNotesList.activity = activity;
+	}
 	final HomeNotesListNote? note = jsonConvert.convert<HomeNotesListNote>(json['note']);
 	if (note != null) {
 		homeNotesList.note = note;
@@ -51,8 +55,149 @@ HomeNotesList $HomeNotesListFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> $HomeNotesListToJson(HomeNotesList entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['type'] = entity.type;
+	data['activity'] = entity.activity?.toJson();
 	data['note'] = entity.note?.toJson();
 	data['jumpUrl'] = entity.jumpUrl;
+	return data;
+}
+
+HomeNotesListActivity $HomeNotesListActivityFromJson(Map<String, dynamic> json) {
+	final HomeNotesListActivity homeNotesListActivity = HomeNotesListActivity();
+	final int? id = jsonConvert.convert<int>(json['id']);
+	if (id != null) {
+		homeNotesListActivity.id = id;
+	}
+	final String? image = jsonConvert.convert<String>(json['image']);
+	if (image != null) {
+		homeNotesListActivity.image = image;
+	}
+	final int? imageH = jsonConvert.convert<int>(json['image_h']);
+	if (imageH != null) {
+		homeNotesListActivity.imageH = imageH;
+	}
+	final int? imageW = jsonConvert.convert<int>(json['image_w']);
+	if (imageW != null) {
+		homeNotesListActivity.imageW = imageW;
+	}
+	final String? name = jsonConvert.convert<String>(json['name']);
+	if (name != null) {
+		homeNotesListActivity.name = name;
+	}
+	final HomeNotesListActivityAuthor? author = jsonConvert.convert<HomeNotesListActivityAuthor>(json['author']);
+	if (author != null) {
+		homeNotesListActivity.author = author;
+	}
+	final String? actionUrl = jsonConvert.convert<String>(json['action_url']);
+	if (actionUrl != null) {
+		homeNotesListActivity.actionUrl = actionUrl;
+	}
+	final String? attend = jsonConvert.convert<String>(json['attend']);
+	if (attend != null) {
+		homeNotesListActivity.attend = attend;
+	}
+	final int? sortnum = jsonConvert.convert<int>(json['sortnum']);
+	if (sortnum != null) {
+		homeNotesListActivity.sortnum = sortnum;
+	}
+	final String? actionTitle = jsonConvert.convert<String>(json['action_title']);
+	if (actionTitle != null) {
+		homeNotesListActivity.actionTitle = actionTitle;
+	}
+	final String? actionIcon = jsonConvert.convert<String>(json['action_icon']);
+	if (actionIcon != null) {
+		homeNotesListActivity.actionIcon = actionIcon;
+	}
+	return homeNotesListActivity;
+}
+
+Map<String, dynamic> $HomeNotesListActivityToJson(HomeNotesListActivity entity) {
+	final Map<String, dynamic> data = <String, dynamic>{};
+	data['id'] = entity.id;
+	data['image'] = entity.image;
+	data['image_h'] = entity.imageH;
+	data['image_w'] = entity.imageW;
+	data['name'] = entity.name;
+	data['author'] = entity.author?.toJson();
+	data['action_url'] = entity.actionUrl;
+	data['attend'] = entity.attend;
+	data['sortnum'] = entity.sortnum;
+	data['action_title'] = entity.actionTitle;
+	data['action_icon'] = entity.actionIcon;
+	return data;
+}
+
+HomeNotesListActivityAuthor $HomeNotesListActivityAuthorFromJson(Map<String, dynamic> json) {
+	final HomeNotesListActivityAuthor homeNotesListActivityAuthor = HomeNotesListActivityAuthor();
+	final int? id = jsonConvert.convert<int>(json['id']);
+	if (id != null) {
+		homeNotesListActivityAuthor.id = id;
+	}
+	final String? n = jsonConvert.convert<String>(json['n']);
+	if (n != null) {
+		homeNotesListActivityAuthor.n = n;
+	}
+	final int? v = jsonConvert.convert<int>(json['v']);
+	if (v != null) {
+		homeNotesListActivityAuthor.v = v;
+	}
+	final String? verifiedImage = jsonConvert.convert<String>(json['verified_image']);
+	if (verifiedImage != null) {
+		homeNotesListActivityAuthor.verifiedImage = verifiedImage;
+	}
+	final String? progressImage = jsonConvert.convert<String>(json['progress_image']);
+	if (progressImage != null) {
+		homeNotesListActivityAuthor.progressImage = progressImage;
+	}
+	final String? p = jsonConvert.convert<String>(json['p']);
+	if (p != null) {
+		homeNotesListActivityAuthor.p = p;
+	}
+	final int? lvl = jsonConvert.convert<int>(json['lvl']);
+	if (lvl != null) {
+		homeNotesListActivityAuthor.lvl = lvl;
+	}
+	final bool? isPrime = jsonConvert.convert<bool>(json['is_prime']);
+	if (isPrime != null) {
+		homeNotesListActivityAuthor.isPrime = isPrime;
+	}
+	final int? relationship = jsonConvert.convert<int>(json['relationship']);
+	if (relationship != null) {
+		homeNotesListActivityAuthor.relationship = relationship;
+	}
+	final String? title = jsonConvert.convert<String>(json['title']);
+	if (title != null) {
+		homeNotesListActivityAuthor.title = title;
+	}
+	final String? followersCountText = jsonConvert.convert<String>(json['followers_count_text']);
+	if (followersCountText != null) {
+		homeNotesListActivityAuthor.followersCountText = followersCountText;
+	}
+	final String? recipesCountText = jsonConvert.convert<String>(json['recipes_count_text']);
+	if (recipesCountText != null) {
+		homeNotesListActivityAuthor.recipesCountText = recipesCountText;
+	}
+	final int? lv = jsonConvert.convert<int>(json['lv']);
+	if (lv != null) {
+		homeNotesListActivityAuthor.lv = lv;
+	}
+	return homeNotesListActivityAuthor;
+}
+
+Map<String, dynamic> $HomeNotesListActivityAuthorToJson(HomeNotesListActivityAuthor entity) {
+	final Map<String, dynamic> data = <String, dynamic>{};
+	data['id'] = entity.id;
+	data['n'] = entity.n;
+	data['v'] = entity.v;
+	data['verified_image'] = entity.verifiedImage;
+	data['progress_image'] = entity.progressImage;
+	data['p'] = entity.p;
+	data['lvl'] = entity.lvl;
+	data['is_prime'] = entity.isPrime;
+	data['relationship'] = entity.relationship;
+	data['title'] = entity.title;
+	data['followers_count_text'] = entity.followersCountText;
+	data['recipes_count_text'] = entity.recipesCountText;
+	data['lv'] = entity.lv;
 	return data;
 }
 
@@ -78,7 +223,7 @@ HomeNotesListNote $HomeNotesListNoteFromJson(Map<String, dynamic> json) {
 	if (author != null) {
 		homeNotesListNote.author = author;
 	}
-	final int? id = jsonConvert.convert<int>(json['id']);
+	final String? id = jsonConvert.convert<String>(json['id']);
 	if (id != null) {
 		homeNotesListNote.id = id;
 	}
@@ -90,11 +235,11 @@ HomeNotesListNote $HomeNotesListNoteFromJson(Map<String, dynamic> json) {
 	if (imageU != null) {
 		homeNotesListNote.imageU = imageU;
 	}
-	final int? imageW = jsonConvert.convert<int>(json['image_w']);
+	final String? imageW = jsonConvert.convert<String>(json['image_w']);
 	if (imageW != null) {
 		homeNotesListNote.imageW = imageW;
 	}
-	final int? imageH = jsonConvert.convert<int>(json['image_h']);
+	final String? imageH = jsonConvert.convert<String>(json['image_h']);
 	if (imageH != null) {
 		homeNotesListNote.imageH = imageH;
 	}
@@ -117,34 +262,6 @@ HomeNotesListNote $HomeNotesListNoteFromJson(Map<String, dynamic> json) {
 	final String? straightText = jsonConvert.convert<String>(json['straight_text']);
 	if (straightText != null) {
 		homeNotesListNote.straightText = straightText;
-	}
-	final String? videoCoverWidth = jsonConvert.convert<String>(json['video_cover_width']);
-	if (videoCoverWidth != null) {
-		homeNotesListNote.videoCoverWidth = videoCoverWidth;
-	}
-	final String? videoCover = jsonConvert.convert<String>(json['video_cover']);
-	if (videoCover != null) {
-		homeNotesListNote.videoCover = videoCover;
-	}
-	final String? videoCoverHeight = jsonConvert.convert<String>(json['video_cover_height']);
-	if (videoCoverHeight != null) {
-		homeNotesListNote.videoCoverHeight = videoCoverHeight;
-	}
-	final String? videoUrl = jsonConvert.convert<String>(json['video_url']);
-	if (videoUrl != null) {
-		homeNotesListNote.videoUrl = videoUrl;
-	}
-	final int? videoCoverFrame = jsonConvert.convert<int>(json['video_cover_frame']);
-	if (videoCoverFrame != null) {
-		homeNotesListNote.videoCoverFrame = videoCoverFrame;
-	}
-	final String? coverWidth = jsonConvert.convert<String>(json['cover_width']);
-	if (coverWidth != null) {
-		homeNotesListNote.coverWidth = coverWidth;
-	}
-	final String? coverHeight = jsonConvert.convert<String>(json['cover_height']);
-	if (coverHeight != null) {
-		homeNotesListNote.coverHeight = coverHeight;
 	}
 	final String? recall = jsonConvert.convert<String>(json['recall']);
 	if (recall != null) {
@@ -182,13 +299,6 @@ Map<String, dynamic> $HomeNotesListNoteToJson(HomeNotesListNote entity) {
 	data['image_u_gif'] = entity.imageUGif;
 	data['action_url'] = entity.actionUrl;
 	data['straight_text'] = entity.straightText;
-	data['video_cover_width'] = entity.videoCoverWidth;
-	data['video_cover'] = entity.videoCover;
-	data['video_cover_height'] = entity.videoCoverHeight;
-	data['video_url'] = entity.videoUrl;
-	data['video_cover_frame'] = entity.videoCoverFrame;
-	data['cover_width'] = entity.coverWidth;
-	data['cover_height'] = entity.coverHeight;
 	data['recall'] = entity.recall;
 	data['year_text'] = entity.yearText;
 	data['month_text'] = entity.monthText;
@@ -198,7 +308,7 @@ Map<String, dynamic> $HomeNotesListNoteToJson(HomeNotesListNote entity) {
 
 HomeNotesListNoteAuthor $HomeNotesListNoteAuthorFromJson(Map<String, dynamic> json) {
 	final HomeNotesListNoteAuthor homeNotesListNoteAuthor = HomeNotesListNoteAuthor();
-	final int? id = jsonConvert.convert<int>(json['id']);
+	final String? id = jsonConvert.convert<String>(json['id']);
 	if (id != null) {
 		homeNotesListNoteAuthor.id = id;
 	}

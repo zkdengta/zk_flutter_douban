@@ -25,6 +25,7 @@ class HomeNotesModel {
 @JsonSerializable()
 class HomeNotesList {
 	int? type;
+	HomeNotesListActivity? activity;
 	HomeNotesListNote? note;
 	String? jumpUrl;
 
@@ -33,6 +34,70 @@ class HomeNotesList {
 	factory HomeNotesList.fromJson(Map<String, dynamic> json) => $HomeNotesListFromJson(json);
 
 	Map<String, dynamic> toJson() => $HomeNotesListToJson(this);
+
+	@override
+	String toString() {
+		return jsonEncode(this);
+	}
+}
+
+@JsonSerializable()
+class HomeNotesListActivity {
+	int? id;
+	String? image;
+	@JSONField(name: "image_h")
+	int? imageH;
+	@JSONField(name: "image_w")
+	int? imageW;
+	String? name;
+	HomeNotesListActivityAuthor? author;
+	@JSONField(name: "action_url")
+	String? actionUrl;
+	String? attend;
+	int? sortnum;
+	@JSONField(name: "action_title")
+	String? actionTitle;
+	@JSONField(name: "action_icon")
+	String? actionIcon;
+
+	HomeNotesListActivity();
+
+	factory HomeNotesListActivity.fromJson(Map<String, dynamic> json) => $HomeNotesListActivityFromJson(json);
+
+	Map<String, dynamic> toJson() => $HomeNotesListActivityToJson(this);
+
+	@override
+	String toString() {
+		return jsonEncode(this);
+	}
+}
+
+@JsonSerializable()
+class HomeNotesListActivityAuthor {
+	int? id;
+	String? n;
+	int? v;
+	@JSONField(name: "verified_image")
+	String? verifiedImage;
+	@JSONField(name: "progress_image")
+	String? progressImage;
+	String? p;
+	int? lvl;
+	@JSONField(name: "is_prime")
+	bool? isPrime;
+	int? relationship;
+	String? title;
+	@JSONField(name: "followers_count_text")
+	String? followersCountText;
+	@JSONField(name: "recipes_count_text")
+	String? recipesCountText;
+	int? lv;
+
+	HomeNotesListActivityAuthor();
+
+	factory HomeNotesListActivityAuthor.fromJson(Map<String, dynamic> json) => $HomeNotesListActivityAuthorFromJson(json);
+
+	Map<String, dynamic> toJson() => $HomeNotesListActivityAuthorToJson(this);
 
 	@override
 	String toString() {
@@ -51,14 +116,14 @@ class HomeNotesListNote {
 	@JSONField(name: "favo_count")
 	String? favoCount;
 	HomeNotesListNoteAuthor? author;
-	int? id;
+	String? id;
 	String? title;
 	@JSONField(name: "image_u")
 	String? imageU;
 	@JSONField(name: "image_w")
-	int? imageW;
+	String? imageW;
 	@JSONField(name: "image_h")
-	int? imageH;
+	String? imageH;
 	String? publishtime;
 	@JSONField(name: "media_type")
 	int? mediaType;
@@ -68,20 +133,6 @@ class HomeNotesListNote {
 	String? actionUrl;
 	@JSONField(name: "straight_text")
 	String? straightText;
-	@JSONField(name: "video_cover_width")
-	String? videoCoverWidth;
-	@JSONField(name: "video_cover")
-	String? videoCover;
-	@JSONField(name: "video_cover_height")
-	String? videoCoverHeight;
-	@JSONField(name: "video_url")
-	String? videoUrl;
-	@JSONField(name: "video_cover_frame")
-	int? videoCoverFrame;
-	@JSONField(name: "cover_width")
-	String? coverWidth;
-	@JSONField(name: "cover_height")
-	String? coverHeight;
 	String? recall;
 	@JSONField(name: "year_text")
 	String? yearText;
@@ -89,6 +140,8 @@ class HomeNotesListNote {
 	String? monthText;
 	@JSONField(name: "day_text")
 	String? dayText;
+	@JSONField(name: "video_url")
+	String? videoUrl;
 
 	HomeNotesListNote();
 
@@ -104,7 +157,7 @@ class HomeNotesListNote {
 
 @JsonSerializable()
 class HomeNotesListNoteAuthor {
-	int? id;
+	String? id;
 	String? n;
 	int? v;
 	@JSONField(name: "verified_image")

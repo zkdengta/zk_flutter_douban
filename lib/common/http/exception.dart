@@ -16,13 +16,13 @@ class ApiException implements Exception {
     switch (error.type) {
       case DioErrorType.cancel:
         return BadRequestException(-1, "请求取消");
-      case DioErrorType.connectTimeout:
+      case DioErrorType.connectionTimeout:
         return BadRequestException(-1, "连接超时");
       case DioErrorType.sendTimeout:
         return BadRequestException(-1, "请求超时");
       case DioErrorType.receiveTimeout:
         return BadRequestException(-1, "响应超时");
-      case DioErrorType.response:
+      case DioErrorType.badResponse:
         try {
           /// http错误码带业务错误信息
           BaseModel apiResponse = BaseModel.fromJson(error.response?.data);
@@ -69,7 +69,7 @@ class ApiException implements Exception {
     }else if(exception is ApiException){
       return exception;
     } else {
-      LoggerUtil.i("ApiException--"+exception.toString());
+      LoggerUtil.i("ApiException--$exception");
       var apiException = ApiException(-1, dataAnalysisException);
       apiException.stackInfo = exception?.toString();
       return apiException;

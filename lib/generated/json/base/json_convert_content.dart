@@ -15,6 +15,8 @@ class JsonConvert {
 	static final Map<String, JsonConvertFunction> convertFuncMap = {
 		(HomeNotesModel).toString(): HomeNotesModel.fromJson,
 		(HomeNotesList).toString(): HomeNotesList.fromJson,
+		(HomeNotesListActivity).toString(): HomeNotesListActivity.fromJson,
+		(HomeNotesListActivityAuthor).toString(): HomeNotesListActivityAuthor.fromJson,
 		(HomeNotesListNote).toString(): HomeNotesListNote.fromJson,
 		(HomeNotesListNoteAuthor).toString(): HomeNotesListNoteAuthor.fromJson,
 		(HomeNotesTopicsHomeNotesTopics).toString(): HomeNotesTopicsHomeNotesTopics.fromJson,
@@ -66,10 +68,6 @@ List<T>? convertListNotNull<T>(dynamic value, {EnumConvertFunction? enumConvert}
     }
   }
 
-
-  //else if (type == "List" || type.startsWith("List<")) {
-  //       return fromJsonAsT(value);
-  //     }  解决List<List>格式
   T? _asT<T extends Object?>(dynamic value,
       {EnumConvertFunction? enumConvert}) {
     final String type = T.toString();
@@ -114,6 +112,12 @@ List<T>? convertListNotNull<T>(dynamic value, {EnumConvertFunction? enumConvert}
 		}
 		if(<HomeNotesList>[] is M){
 			return data.map<HomeNotesList>((Map<String, dynamic> e) => HomeNotesList.fromJson(e)).toList() as M;
+		}
+		if(<HomeNotesListActivity>[] is M){
+			return data.map<HomeNotesListActivity>((Map<String, dynamic> e) => HomeNotesListActivity.fromJson(e)).toList() as M;
+		}
+		if(<HomeNotesListActivityAuthor>[] is M){
+			return data.map<HomeNotesListActivityAuthor>((Map<String, dynamic> e) => HomeNotesListActivityAuthor.fromJson(e)).toList() as M;
 		}
 		if(<HomeNotesListNote>[] is M){
 			return data.map<HomeNotesListNote>((Map<String, dynamic> e) => HomeNotesListNote.fromJson(e)).toList() as M;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:zk_flutter_douban/res/app_colors.dart';
 import 'package:zk_flutter_douban/res/gaps.dart';
 import 'package:zk_flutter_douban/res/strings.dart';
-import 'package:zk_flutter_douban/theme/app_theme.dart';
 import 'package:zk_flutter_douban/widget/state/list_skeleton_shimmer_loading.dart';
 
 ///骨架屏
@@ -47,7 +47,10 @@ class ShimmerLoadingPage extends StatelessWidget {
               Gaps.vGap10,
               Text(
                 StringsConstant.loading.tr,
-                style: context.headline6Style,
+                style: const TextStyle(
+                  color: AppColors.yellow,
+                  fontSize: 16
+                ),
               )
             ],
           ),

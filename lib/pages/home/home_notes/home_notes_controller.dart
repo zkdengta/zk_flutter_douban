@@ -12,6 +12,7 @@ class HomeNotesController extends BaseGetXWithPageRefreshController {
 
   final topicFirstList = RxList<HomeNotesTopicsHomeNotesTopics>();
   final topicTwoList = RxList<HomeNotesTopicsHomeNotesTopics>();
+  final notesList = RxList<HomeNotesList>();
 
   @override
   void onInit() {
@@ -49,26 +50,25 @@ class HomeNotesController extends BaseGetXWithPageRefreshController {
             }
 
           }
-          //
-          // if(response.list != null && response.list?.isNotEmpty == true){
-          //   refreshLoadState = LoadState.success;
-          //   List<HomeRecommendList> list =
-          //   (response.list as List<HomeRecommendList>).toList();
-          //   if (refreshState == RefreshState.first) {
-          //     homeCookList.assignAll(list);
-          //   } else if (refreshState == RefreshState.refresh) {
-          //     homeCookList.assignAll(list);
-          //   } else if (refreshState == RefreshState.loadMore) {
-          //     LoggerUtil.e("getHomeRecommendData---"+list.toString());
-          //     homeCookList.addAll(list);
-          //   }
-          // }else{
-          //   if (loadingType != Constant.noLoading) {
-          //     refreshLoadState = LoadState.empty;
-          //   } else {
-          //     loadNoData();
-          //   }
-          // }
+
+          if(response.list != null && response.list?.isNotEmpty == true){
+            refreshLoadState = LoadState.success;
+            List<HomeNotesList> list =
+            (response.list as List<HomeNotesList>).toList();
+            if (refreshState == RefreshState.first) {
+              notesList.assignAll(list);
+            } else if (refreshState == RefreshState.refresh) {
+              notesList.assignAll(list);
+            } else if (refreshState == RefreshState.loadMore) {
+              notesList.addAll(list);
+            }
+          }else{
+            if (loadingType != Constant.noLoading) {
+              refreshLoadState = LoadState.empty;
+            } else {
+              loadNoData();
+            }
+          }
         },
         onFail: (error) {
           refreshLoadState = LoadState.fail;

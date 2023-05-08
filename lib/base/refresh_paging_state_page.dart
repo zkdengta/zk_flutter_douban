@@ -4,10 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:zk_flutter_douban/base/base_getx_with_page_refresh_controller.dart';
+import 'package:zk_flutter_douban/res/app_colors.dart';
 import 'package:zk_flutter_douban/res/gaps.dart';
 import 'package:zk_flutter_douban/res/r.dart';
 import 'package:zk_flutter_douban/res/strings.dart';
-import 'package:zk_flutter_douban/theme/app_theme.dart';
 import 'package:zk_flutter_douban/widget/state/load_error_page.dart';
 import 'package:zk_flutter_douban/widget/state/load_state.dart';
 import 'package:zk_flutter_douban/widget/state/loading_lottie_rocket_widget.dart';
@@ -174,9 +174,7 @@ class RefreshPagingStatePage<T extends BaseGetXWithPageRefreshController>
           context: context,
           constant: (controller.errorMsg != null &&
                   controller.errorMsg.toString().isNotEmpty)
-              ? StringsConstant.refreshFailed.tr +
-                  '\n' +
-                  controller.errorMsg
+              ? '${StringsConstant.refreshFailed.tr}\n${controller.errorMsg}'
               : StringsConstant.refreshFailed.tr,
           iconData: Icons.error,
         );
@@ -196,16 +194,16 @@ class RefreshPagingStatePage<T extends BaseGetXWithPageRefreshController>
         );
       }
 
-      final Color _backgroundColor = context.dialogBackgroundColor;
+      const Color backgroundColor = AppColors.yellow;
 
-      final SystemUiOverlayStyle _overlayStyle =
-          ThemeData.estimateBrightnessForColor(_backgroundColor) ==
+      final SystemUiOverlayStyle overlayStyle =
+          ThemeData.estimateBrightnessForColor(backgroundColor) ==
                   Brightness.dark
               ? SystemUiOverlayStyle.light
               : SystemUiOverlayStyle.dark;
 
       return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: _overlayStyle,
+        value: overlayStyle,
         child: Container(
           height: 90,
           // color: Colors.red,
@@ -252,7 +250,7 @@ class RefreshPagingStatePage<T extends BaseGetXWithPageRefreshController>
           context: context,
           constant: (controller.errorMsg != null &&
                   controller.errorMsg.toString().isNotEmpty)
-              ? StringsConstant.loadFailed.tr + "\n" + controller.errorMsg
+              ? "${StringsConstant.loadFailed.tr}\n" + controller.errorMsg
               : StringsConstant.loadFailed.tr,
           iconData: Icons.error_outline,
         );
@@ -284,7 +282,9 @@ class RefreshPagingStatePage<T extends BaseGetXWithPageRefreshController>
         Gaps.hGap10,
         Text(
           constant,
-          style: context.bodyText2Style!.copyWith(color: Colors.grey),
+          style: const TextStyle(
+            color: Colors.grey
+          ),
           textAlign: TextAlign.center,
         ),
       ],
